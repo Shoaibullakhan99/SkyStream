@@ -18,6 +18,8 @@ app.use(bodyParser.urlencoded(
 
 connectDb();
 
+app.use('/api/users', require('./routes/userRoutes.js'));
+
 app.listen(PORT, () => {
     console.log(`User-Service running on PoRT ${PORT}`);
 });
