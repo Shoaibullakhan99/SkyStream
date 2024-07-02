@@ -8,7 +8,8 @@ const connectDb = async () => {
         await mongoose.connect (process.env.MONGO_URI, {
             useNewurlParser: true,
             useUnifiedTopology: true
-        });
+        }
+    );
         console.log(`Connection to mongoDB established for skyStream user-service`);
     }
     catch (err) {
