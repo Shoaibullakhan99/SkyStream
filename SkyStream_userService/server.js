@@ -21,5 +21,5 @@ connectDb();
 app.use('/api/users', require('./routes/userRoutes.js'));
 
 app.listen(PORT, () => {
-    console.log(`User-Service running on PoRT ${PORT}`);
+    console.log(`User-Service running on PORT ${PORT}`);
 });

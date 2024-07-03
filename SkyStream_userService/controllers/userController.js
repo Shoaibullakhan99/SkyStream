@@ -1,15 +1,11 @@
 const User = require('../models/User.js');
 const AuthService = require('../services/authService.js');
 
-function generateUsrId () {
-    return parseInt(Math.random()*100000)
-}
-
 exports.registerUser = async (req, res) => {
     const {username, email, password, role} = req.body;
 
     try {
-        let user = await User.findOne({email});
+        let user = await User.findOne({ email });
         if(user){
             return res.status(400).json({message: `User already exists`});
         }
@@ -17,13 +13,10 @@ exports.registerUser = async (req, res) => {
         const hashedPassword = await AuthService.hashpassword(password);
 
         user = new User({
-            username, email, hashedPassword, role
+            username, email, password: hashedPassword, role
         });
 
         await user.save();
-
-        //Not using for now need more clarity for user_id part
-        const id = generateUsrId()
 
         const token = AuthService.generateToken(user.id)
         res.status(200).json({token: token})
@@ -47,7 +40,7 @@ exports.loginUser = async (req, res) => {
             res.status(400).json({message: `Invalid credentials`});
         }
         const token = AuthService.generateToken(user.id);
-        res.status(200).json({token});
+        res.status(200).json({ token: token, role: user.role});
     }
     catch (err){
         console.error(err.message);
