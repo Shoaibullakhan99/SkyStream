@@ -7,11 +7,13 @@ const connectDb = async () => {
     try {
         await mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
-            useUnifiedTopology: true
+            useUnifiedTopology: true,
+            useCreateIndex: true
         })
     } 
     catch (err){
         console.error(`Error connecting to the database,`, err);
+        process.exit(1);
     }
 }
 
