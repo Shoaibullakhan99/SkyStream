@@ -30,7 +30,7 @@ exports.createAircraft = async (req, res) => {
 exports.getAircraft = async (req, res) => {
     try {
         const aircraft = await Aircraft.find();
-        return res.status(200).json(aircraft);
+        return res.status(200).json({aircraft : aircraft});
     } 
     catch (err){
         console.error(`error fetching aircrafts`, err);
