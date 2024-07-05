@@ -24,7 +24,8 @@ exports.createCrew = async (req, res) => {
 
 exports.getCrew = async (req, res) => {
     try{
-
+        const crew = await Crew.find();
+        return res.status(200).json({crew: crew})
     }
     catch (err){
         console.error('Error fetching crews', err);
