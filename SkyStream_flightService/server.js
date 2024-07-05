@@ -16,6 +16,10 @@ app.use(cors());
 
 connectDb();
 
+app.use('/api/aircraft', require('./routes/aircraftRoutes.js'));
+app.use('/api/flights', require('./routes/flightRoutes.js'));
+app.use('/api/crew', require('./routes/crewRoutes.js'));
+
 app.listen(PORT, () => {
     console.log(`Server for flight service is running on PORT ${PORT}`);
 })
